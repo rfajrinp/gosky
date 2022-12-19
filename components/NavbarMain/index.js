@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 const NavbarMain = () => {
   const getAccessToken = () => Cookies.get("access_token");
 
-  const [authenticated, setAuthenticated] = useState(!!getAccessToken());
+  const [authenticated, setAuthenticated] = useState(false);
 
   const isAuthenticated = () => setAuthenticated(!!getAccessToken());
 
@@ -96,8 +96,9 @@ const NavbarMain = () => {
   }
 
   useEffect(() => {
-    setIsLoggedIn(!!authenticated);
-  }, [authenticated]);
+    isAuthenticated();
+    getDataUser(Cookies.get("access_token"));
+  }, []);
 
   function handleSubmitLogin(e) {
     setIsLoading(true);
@@ -110,6 +111,7 @@ const NavbarMain = () => {
       .finally(() => setIsLoading(false));
 
     console.log(authenticated);
+    console.log(isLoggedIn);
   }
 
   function handleSubmitOtp(e) {
@@ -140,6 +142,7 @@ const NavbarMain = () => {
     isAuthenticated();
     setIsLoggedIn(false);
     setIsLoading(false);
+    console.log(authenticated);
   }
 
   async function getDataUser(token) {
@@ -170,25 +173,44 @@ const NavbarMain = () => {
               <span>My Bookings</span>
             </Nav.Link>
             <Nav.Link href="#home" className="text-dark mx-2">
+              {" "}
               <i className="bi bi-bell-fill primary-color"></i> <span>Notification</span>
             </Nav.Link>
 
-            {!!authenticated ? (
+            {authenticated == false ? (
               <>
                 <Nav.Link href="#home" className="text-dark">
                   <Button variant="primary" className="primary-background" style={{ width: "120px" }} onClick={handleOpenLogin}>
                     <span>Login</span>
-                  </Button>
+                  </Button>{" "}
                 </Nav.Link>
 
                 <Nav.Link href="#home" className="text-dark ">
                   <Button variant="primary" className="primary-background" style={{ width: "120px" }} onClick={handleOpenRegister}>
                     Register
-                  </Button>
+                  </Button>{" "}
                 </Nav.Link>
               </>
             ) : (
-              <span>hi</span>
+              <NavDropdown
+                title={
+                  <span>
+                    <i class="bi bi-person-circle me-1 primary-color"></i>
+                    <p className="m-0">{userData.name}</p>
+                  </span>
+                }
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.3">
+                  <Button variant="primary" className="primary-background" style={{ width: "120px" }} onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </NavDropdown.Item>
+              </NavDropdown>
             )}
           </Nav>
         </Navbar.Collapse>

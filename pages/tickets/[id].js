@@ -10,11 +10,11 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 const ticket = ({ data }) => {
-  const [userData, setUserData] = useState(false);
+  const [userData, setUserData] = useState(data);
 
-  if (userData === false) {
+  useEffect(() => {
     getDataUser();
-  }
+  }, []);
 
   const router = useRouter();
   const { id } = router.query;
@@ -37,6 +37,23 @@ const ticket = ({ data }) => {
     const data = await response.json();
     const dataUser = data.data;
     setUserData(dataUser);
+  }
+
+  async function handleBook() {
+    const newToken = Cookies.get("access_token");
+    const response = await fetch("https://gosky.up.railway.app/api/transactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${newToken}`,
+      },
+      body: JSON.stringify({
+        ticketId: id,
+        amount: 1,
+      }),
+    });
+    const data = await response.json();
+    console.log(response);
   }
 
   console.log(userData);
@@ -85,7 +102,9 @@ const ticket = ({ data }) => {
                 </Card.Body>
               </Card>
               <div className="d-flex mt-3">
-                <Button variant="primary ms-auto primary-background px-5">Confirm</Button>
+                <Button variant="primary ms-auto primary-background px-5" onClick={handleBook}>
+                  Confirm
+                </Button>
               </div>
             </Form>
           </div>
