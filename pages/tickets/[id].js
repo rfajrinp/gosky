@@ -156,4 +156,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default ticket;
+export default Ticket;
