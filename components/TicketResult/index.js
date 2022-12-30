@@ -31,7 +31,7 @@ const TicketResult = (props) => {
             <Card>
               <Card.Body>
                 <Card.Title>Filter</Card.Title>
-                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
+                <Card.Text>Some quick example text to build on the card title and make up the bulk of the cards content.</Card.Text>
                 <link href="/home">
                   <Button variant="primary">Change serach</Button>
                 </link>
