@@ -5,8 +5,6 @@ import Card from "react-bootstrap/Card";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useAppContext } from "../../pages/context/AppContext";
-
 const TicketResult = (props) => {
   const [appState, setAppState] = useAppContext();
 
