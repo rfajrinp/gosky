@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 
 import Cookies from "js-cookie";
 
-const ticket = ({ data }) => {
+const Ticket = ({ data }) => {
   const [userData, setUserData] = useState(data);
 
   useEffect(() => {
