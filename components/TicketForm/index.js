@@ -5,7 +5,6 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useRouter } from "next/router";
-import { useAppContext } from "../../pages/context/AppContext";
 
 const TicketForm = () => {
   const router = useRouter();
