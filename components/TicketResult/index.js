@@ -50,14 +50,14 @@ const TicketResult = (props) => {
                   </div>
                 </div>
 
-                <a href="/home" className="d-flex">
+                <Link href="/home" className="d-flex">
                   <Button variant="primary primary-background px-4 ">Change serach</Button>
-                </a>
+                </Link>
               </Card.Body>
             </Card>
             {data.map((ticket, key) => {
               return (
-                <Card className="mb-4">
+                <Card className="mb-4" key={ticket.id}>
                   <Card.Img variant="top" src={ticket.imageUrl} style={{ maxHeight: "100px", objectFit: "cover" }} />
                   <Card.Body className="row p-4 justify-content-between d-flex">
                     <div className="col-2 text-center">
