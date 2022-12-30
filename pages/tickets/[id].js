@@ -117,7 +117,7 @@ const Ticket = ({ data }) => {
                 <hr></hr>
                 <Card.Text className="fw-semibold">Departure : {data.departureTime.split("T")[0]}</Card.Text>
                 <div className="d-flex align-items-center">
-                  <Image src="/static/images/logo.svg" width={125} height={50} className="me-3" />
+                  <Image src="/static/images/logo.svg" width={125} height={50} className="me-3" alt="" />
                   <p className="m-0 fs-5 fw-semibold">GoSky Airline</p>
                 </div>
                 <div className="d-flex align-items-center">
